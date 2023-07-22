@@ -1,0 +1,511 @@
+<html>
+<head>
+  <meta charset="UTE-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+  <div
+      style="
+        padding: 10px;
+        background: linear-gradient(#111169, rgb(0, 0, 0));
+        width: 100%;
+        height: 60px;
+        position: fixed;
+        z-index: 10;
+      "
+    >
+      <div style="color: #ffffff; font-size: 26px">
+        <img src="./src/logo/galaxy.png" style="width: 20px; height: 20px" />
+        universe
+      </div>
+    </div>
+  <img src="../space.png" style="width: 100vw; height: 100vh; position: fixed;"/>
+  <!-- 태양 -->
+  <div class="pos-abs" style="left:   -250px; top: 600px;" onclick="showInfo_su()">
+    <canvas id="canvas_Sun" width="500" height="500" ;style="cursor: pointer;"></canvas>
+    <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="SUn">
+      <P class="fs-3 fw-bold">달</P>
+      <p class="my-2" style="font-weight: bold; font-size: 26px;">1)특징</p>
+      
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 500px; top: 800;" onclick="showInfo_p()">
+    <!-- 수성 -->
+    <canvas id="canva_pluto" width="100" height="100"style="cursor: pointer;"></canvas>
+    <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="p">
+      <P class="fs-3 fw-bold">달</P>
+      <p class="my-2" style="font-weight: bold; font-size: 26px;">1)특징</p>
+      
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 750px; top: 800;" onclick="showInfo_v()">
+    <!-- 금성 -->
+    <canvas id="canvas_venus" width="100" height="100"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="v">
+        <P class="fs-3 fw-bold">달</P>
+        <p class="my-2" style="font-weight: bold; font-size: 26px;">1)특징</p>
+        
+      </div>
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 1100px; bottom: 17px;" onclick="showInfo_e()">
+    <!-- 지구 -->
+    <div style="position:relative">
+      <div class="pos-abs bg-light p-3" style="width: 500px; height: 700px; left: -100px; top: 300px; display: none; font-size: larger; overflow-y: scroll;" id="E">
+        
+      </div>
+    </div>
+    <canvas id="canvas_earth" width="120" height="120"style="cursor: pointer;"></canvas>
+  </div>
+  
+  <div class="pos-abs" style="left: 1200px; bottom: 90px;" onclick="showInfo_moon()">
+    <!-- 달 -->
+    <canvas id="canvas_moon" width="80" height="80"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="MOon">
+        
+      </div>
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 1200px; bottom: -230px;" onclick="showInfo_ma()">
+    <!-- mars -->
+    <canvas id="canvas_mars" width="650" height="650"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="ma">
+      </div>
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 1610px; bottom: -400px;" onclick="showInfo_j()">
+    <!-- jupiter -->
+    <canvas id="canvas_jupiter" width="1000" height="1000"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="j">
+
+      </div>
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 2200px; bottom: -300px;" onclick="showInfo_sa()">
+    <!-- saturn -->
+    <canvas id="canvas_saturn" width="800" height="800"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="sa">
+
+      </div>
+    </div>
+  </div>
+  <div class="pos-abs" style="left: 2680px; bottom: -300px;" onclick="showInfo_u()">
+    <!-- uranus -->
+    <canvas id="canvas_uranus" width="800" height="800"style="cursor: pointer;"></canvas>
+    <div style="position:relative">
+      <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="u">
+
+      </div>
+    </div>
+  </div>
+</body>
+<div class="pos-abs" style="left: 3180px; bottom: -300px;" onclick="showInfo_n()">
+  <!-- neptune -->
+  <canvas id="canvas_neptune" width="800" height="800"style="cursor: pointer;"></canvas>
+  <div style="position:relative">
+    <div class="pos-abs bg-light" style="width: 500px; height: 500px; left: -200px;  display: none; font-size: larger; overflow-y: scroll;" id="n">
+      
+    </div>
+  </div>
+</div>
+</body>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+      "GLTFLoader":"https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js"
+    }
+  }
+</script>
+<script>
+  function showInfo_su() {
+    let stat = document.getElementById("SUn").style.display
+    stat == "none" ? document.getElementById("SUn").style.display = "block" : document.getElementById("SUn").style.display = "none"
+  }
+  function showInfo_p() {
+    let stat = document.getElementById("p").style.display
+    stat == "none" ? document.getElementById("p").style.display = "block" : document.getElementById("p").style.display = "none"
+  }
+  function showInfo_v() {
+    let stat = document.getElementById("v").style.display
+    stat == "none" ? document.getElementById("v").style.display = "block" : document.getElementById("v").style.display = "none"
+  }
+  function showInfo_e() {
+    let stat = document.getElementById("E").style.display
+    stat == "none" ? document.getElementById("E").style.display = "block" : document.getElementById("E").style.display = "none"
+  }
+  function showInfo_ma() {
+    let stat = document.getElementById("ma").style.display
+    stat == "none" ? document.getElementById("ma").style.display = "block" : document.getElementById("ma").style.display = "none"
+  }
+  function showInfo_j() {
+    let stat = document.getElementById("j").style.display
+    stat == "none" ? document.getElementById("j").style.display = "block" : document.getElementById("j").style.display = "none"
+  }
+  function showInfo_sa() {
+    let stat = document.getElementById("sa").style.display
+    stat == "none" ? document.getElementById("sa").style.display = "block" : document.getElementById("sa").style.display = "none"
+  }
+  function showInfo_u() {
+    let stat = document.getElementById("u").style.display
+    stat == "none" ? document.getElementById("u").style.display = "block" : document.getElementById("u").style.display = "none"
+  }
+  function showInfo_n() {
+    let stat = document.getElementById("n").style.display
+    stat == "none" ? document.getElementById("n").style.display = "block" : document.getElementById("n").style.display = "none"
+  }
+  function showInfo_moon() {
+    let stat = document.getElementById("MOon").style.display
+    stat == "none" ? document.getElementById("MOon").style.display = "block" : document.getElementById("MOon").style.display = "none"
+  }
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_earth'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(30, 1);
+  camera.position.set(0, 0, 50)
+  camera.rotation.set(0, 0, 0.2)
+  
+  let hemisphereLight_earth = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 5)
+  scene.add(hemisphereLight_earth)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/earth_3d_model/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_jupiter'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(30, 1);
+  camera.position.set(0, 0, 17)
+  camera.rotation.set(0, 0, 0)
+  
+  let hemisphereLight_jupiter = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+  scene.add(hemisphereLight_jupiter)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/jupiter/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_saturn'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(30, 1);
+  camera.position.set(0, 0, 5)
+  camera.rotation.set(0, 0, 0.2)
+  
+  let hemisphereLight_saturn = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+  scene.add(hemisphereLight_saturn)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/saturn/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_uranus'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(20, 1);
+  camera.position.set(0, 0, 5)
+  camera.rotation.set(0, 0, 0)
+  
+  let hemisphereLight_saturn = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+  scene.add(hemisphereLight_saturn)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/uranus/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.x += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_neptune'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(110, 1);
+  camera.position.set(0, 0, 2000)
+  camera.rotation.set(0, 0, 0.2)
+  
+  let hemisphereLight_neptune = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+  scene.add(hemisphereLight_neptune)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/neptune/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_venus'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(30, 1);
+  camera.position.set(0, 0, 5)
+  camera.rotation.set(0, 0, 0.2)
+  
+  let hemisphereLight_venus = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 5)
+  scene.add(hemisphereLight_venus)
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/venus_v1.1/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  import{GLTFLoader} from 'GLTFLoader';
+  import* as THREE from 'three';
+  
+  let scene = new THREE.Scene();
+  let renderer = new THREE.WebGLRenderer({
+    canvas : document.querySelector('#canvas_mars'),
+    antialias : true,
+    alpha: true,
+  });
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  
+  let camera = new THREE.PerspectiveCamera(30, 1);
+  camera.position.set(0, 0, 1300)
+  camera.rotation.set(0, 0, 0.2)
+  
+  let hemisphereLight_mars = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 5)
+  scene.add(hemisphereLight_mars)
+  let lights = new THREE.DirectionalLight(0xffffffff, 2);
+  scene.add(lights);
+  
+  let loader = new GLTFLoader();
+  loader.load('../src/mars/scene.gltf', function(gltf){
+    scene.add(gltf.scene);
+    function animate(){
+      requestAnimationFrame(animate)
+      gltf.scene.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate()
+  });
+  
+</script>
+<script type="module">
+  // import{GLTFLoader} from 'GLTFLoader';
+  // import* as THREE from 'three';
+  
+  // let scene = new THREE.Scene();
+  // let renderer = new THREE.WebGLRenderer({
+    //     canvas : document.querySelector('#canva_pluto'),
+    //     antialias : true,
+    //     alpha: true,
+    // });
+    // renderer.outputEncoding = THREE.sRGBEncoding;
+    
+    // let cameras_p = new THREE.PerspectiveCamera(30, 1);
+    // cameras_p.position.set(0, 0, 450)
+    
+    // // let lights = new THREE.DirectionalLight(0xffff00, 10);
+    // // scene.add(lights);
+    // let hemisphereLight_pluto = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+    // scene.add(hemisphereLight_pluto)
+    // let loaders_p = new GLTFLoader();
+    // loaders_p.load('pluto/scene.gltf', function(gltf){
+      //     scene.add(gltf.scene);
+      //     function animate(){
+        //         requestAnimationFrame(animate)
+        //         gltf.scene.rotation.y += 0.01;
+        //         renderer.render(scene, cameras_p);
+        //     }
+        //     animate()
+        // });
+        import{GLTFLoader} from 'GLTFLoader';
+        import* as THREE from 'three';
+        
+        let scene = new THREE.Scene();
+        let renderer = new THREE.WebGLRenderer({
+          canvas : document.querySelector('#canva_pluto'),
+          antialias : true,
+          alpha: true,
+        });
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        
+        let camera = new THREE.PerspectiveCamera(23, 1);
+        camera.position.set(0, 0, 800)
+        camera.rotation.set(0, 0, 0.2)
+        
+        let hemisphereLight_p = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 1.2)
+        scene.add(hemisphereLight_p)
+        
+        let loader = new GLTFLoader();
+        loader.load('../src/mercurio_v1.1/scene.gltf', function(gltf){
+          scene.add(gltf.scene);
+          function animate(){
+            requestAnimationFrame(animate)
+            gltf.scene.rotation.y += 0.01;
+            renderer.render(scene, camera);
+          }
+          animate()
+        });
+        
+        
+      </script>
+      <script type="module">
+        import{GLTFLoader} from 'GLTFLoader';
+        import* as THREE from 'three';
+        
+        let scene = new THREE.Scene();
+        let renderer = new THREE.WebGLRenderer({
+          canvas : document.querySelector('#canvas_Sun'),
+          antialias : true,
+          alpha: true,
+        });
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        
+        let cameras = new THREE.PerspectiveCamera(30, 1);
+        cameras.position.set(0, 0, 40)
+        // let lights = new THREE.DirectionalLight(0xffff00, 10);
+        // scene.add(lights);
+        let loaders = new GLTFLoader();
+        loaders.load('../src/sun/scene.gltf', function(gltf){
+          scene.add(gltf.scene);
+          function animate(){
+            requestAnimationFrame(animate)
+            gltf.scene.rotation.y += 0.003;
+            renderer.render(scene, cameras);
+          }
+          animate()
+        });
+      </script>
+      <script type="module">
+        import{GLTFLoader} from 'GLTFLoader';
+        import* as THREE from 'three';
+        
+        let scene = new THREE.Scene();
+        let renderer = new THREE.WebGLRenderer({
+          canvas : document.querySelector('#canvas_moon'),
+          antialias : true,
+          alpha: true,
+        });
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        
+        let cameras_m = new THREE.PerspectiveCamera(40, 1);
+        cameras_m.position.set(0, 0, 450)
+        
+        // let lights = new THREE.DirectionalLight(0xffff00, 10);
+        // scene.add(lights);
+        let hemisphereLight = new THREE.HemisphereLight(0xffffffff, 0xCCCCCCff, 0.5)
+        scene.add(hemisphereLight)
+        let loaders_m = new GLTFLoader();
+        loaders_m.load('../src/moon/scene.gltf', function(gltf){
+          scene.add(gltf.scene);
+          function animate(){
+            requestAnimationFrame(animate)
+            gltf.scene.rotation.y += 0.01;
+            renderer.render(scene, cameras_m);
+          }
+          animate()
+        });
+        
+      </script>
+      <style>
+        .pos-abs {
+          position: absolute;
+          background-color: #00000000;
+        }
+      </style>
+      </html>
